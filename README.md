@@ -1,2 +1,1 @@
-# ascii-art-generator
-png to ascii art converter
+# *`ascii-art-generator`*

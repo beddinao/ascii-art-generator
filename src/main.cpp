@@ -3,7 +3,9 @@
 #include <fstream>
 using namespace std;
 
-#define	SHADOW_CHARS	"`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@"
+//#define	SHADOW_CHARS	"`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@"
+//#define	SHADOW_CHARS	" .``'^,~_-+*?[]{}1)(|><\\/cvuinzloahkprdb&GUQX0OZm&w8B$WM%@"
+#define	SHADOW_CHARS	" _.,-=+:;cba!?0123456789$W#@"
 
 #ifndef	TERM_WIDTH
 #define	TERM_WIDTH	1600

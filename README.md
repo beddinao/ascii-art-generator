@@ -4,12 +4,14 @@
 
 A lightweight tool that uses <a href="https://github.com/lvandeve/lodepng">lodepng</a> to convert PNG images into stylish ASCII art.
 
-## View requirements
-```
-a terminal emulator that supports 24-bit colors
- - on MacOs : iterm
- - on Linux : any terminal
-```
+## Requirements
+- **Image Format:** Supports PNG files only. If your image is in a different format,
+
+  try using <a href="https://convertio.co/" >Convertio</a> to convert it to PNG.
+- **Terminal Emulator:** A 24-bit color supporting terminal:
+   - macOs : `iterm`
+   - Linux : any terminal
+   
 
 ## Usage
 ```

@@ -1,6 +1,7 @@
 #include "lodepng.h"
 #include <iostream>
 #include <fstream>
+#include <cmath>
 using namespace std;
 
 #define	SHADOW_CHARS	"`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@"

@@ -25,7 +25,7 @@ OR
 
 ## Example
 ```
-./convert.sh pngs/black-hole.png
+./convert.sh pngs/moon.png
 ```
 
-![](/screen-shots/black-hole.png)
+![](/screen-shots/moon.png)

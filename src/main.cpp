@@ -27,50 +27,33 @@ float	__calc_new_range(float old_value, float old_min, float old_max, float new_
 }
 
 void	print_ansi(int R, int G, int B, bool front, char ch) {
-	cout << "\x1B["
-		<< (front ? "38" : "48") << ";2;"
+	R += 0 - (R < 0 ? R : 0);
+	G += 0 - (G < 0 ? G : 0);
+	B += 0 - (B < 0 ? B : 0);
+	cout << "\x1B[" << (front ? "38" : "48") << ";2;"
 		<< R << ";" << G << ";" << B << "m";
-	cout << ch;
-	cout << "\x1B[0m";
+	if (front) {
+		cout << ch;
+		cout << "\x1B[0m";
+	}
 }
 
 void	put_pixel(int R, int G, int B) {
-	//string	shadow_chars = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
-	string	shadow_chars = ".,-~:;=!*#$@";
-	int	medium_color = (R + G + B) / 3;
+	string	shadow_chars = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
+	//string	shadow_chars = ".,-~:;=!*#$@";
+	int	medium_color = (R + G + B) / 3,
+		shadow_index;
 
-
-	/*if (0 && medium_color < 100) {
-		int	shadow_index = __calc_new_range(medium_color, 0, 100, 0, shadow_chars.size());
-		print_ansi(R, G, B, true, shadow_chars[shadow_index]);
-	}
-	
-	else if (0 && medium_color > 100 && medium_color < 150) {*/
-		cout << "\x1B[48;2;" << (R - (R > 40 ? 40 : R)) << ";"
-			<< (G - (G > 40 ? 40 : G)) << ";"
-			<< (B - (B > 40 ? 40 : B)) << "m";
-		int	shadow_index = __calc_new_range(medium_color, 0, 255, 0, shadow_chars.size());
-		/*R -= R > 20 ? 20 : R;
-		G -= G > 20 ? 20 : G;
-		B -= B > 20 ? 20 : B;*/
-		print_ansi(R, G, B, true, shadow_chars[shadow_index]);
-	/*}
-
-	else if (1 || medium_color > 150)
-		print_ansi(R, G, B, false, ' ');*/
+	shadow_index = __calc_new_range(medium_color, 0, 255, 0, shadow_chars.size());
+	print_ansi(R - 40, G - 40, B - 40, false, ' ');
+	print_ansi(R, G, B, true, shadow_chars[shadow_index]);
 }
 
 
 void	process(vector<unsigned char> &image, unsigned &width, unsigned &height) {
-
-
-	float	image_aspect_ratio = static_cast<float>(width) / height;
-	float	term_aspect_ratio = static_cast<float>(TERM_WIDTH) / TERM_HEIGHT;
-
-	int	x_step = static_cast<int>(round(width / static_cast<float>(TERM_WIDTH)));
-	int	y_step = static_cast<int>(round(height / static_cast<float>(TERM_HEIGHT)));
-
-	int	index;
+	int	x_step = static_cast<int>(round(width / static_cast<float>(TERM_WIDTH))),
+		y_step = static_cast<int>(round(height / static_cast<float>(TERM_HEIGHT))),
+		index;
 
 	for (int y = 0;y / y_step < TERM_HEIGHT; y += y_step) {
 		for (int x = 0; x / x_step < TERM_WIDTH && x < width ; x += x_step ) {
@@ -81,7 +64,7 @@ void	process(vector<unsigned char> &image, unsigned &width, unsigned &height) {
 		cout << endl;
 	}
 
-	cout << "image.pixels: " << image.size() << "; image.width: " << width << "; image.height: " << height
+	cout << "image.pixels: " << image.size() << "; image.width: " << width << "; image.height: " << height << endl
 		<< "; terminal.width: " << TERM_WIDTH << "; terminal.height: " << TERM_HEIGHT << endl;
 }
 

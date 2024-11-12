@@ -27,9 +27,9 @@ float	__calc_new_range(float old_value, float old_min, float old_max, float new_
 }
 
 void	print_ansi(int R, int G, int B, bool front, char ch) {
-	R += 0 - (R < 0 ? R : 0);
-	G += 0 - (G < 0 ? G : 0);
-	B += 0 - (B < 0 ? B : 0);
+	R += 0 - (R < 0 ? -R : 0);
+	G += 0 - (G < 0 ? -G : 0);
+	B += 0 - (B < 0 ? -B : 0);
 	cout << "\x1B[" << (front ? "38" : "48") << ";2;"
 		<< R << ";" << G << ";" << B << "m";
 	if (front) {
@@ -64,8 +64,8 @@ void	process(vector<unsigned char> &image, unsigned &width, unsigned &height) {
 		cout << endl;
 	}
 
-	cout << "image.pixels: " << image.size() << "; image.width: " << width << "; image.height: " << height << endl
-		<< "; terminal.width: " << TERM_WIDTH << "; terminal.height: " << TERM_HEIGHT << endl;
+	cout << "image.pixels: " << image.size() << "; image.width: " << width << "; image.height: " << height << ";"
+		<< endl<< "terminal.width: " << TERM_WIDTH << "; terminal.height: " << TERM_HEIGHT << endl;
 }
 
 int	main(int c, char **v) {

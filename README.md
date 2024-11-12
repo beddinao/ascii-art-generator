@@ -2,7 +2,7 @@
 # *`ascii-art-generator`*
 `DEMO`
 
-A lightweight tool that uses <a href="https://github.com/lvandeve/lodepng">lodepng</a> to convert PNG images into stylish ASCII art.
+A lightweight tool that uses <a href="https://github.com/lvandeve/lodepng">lodepng</a> to load PNG images and then converts them into stylish ASCII art.
 
 ## Requirements
 - **Image Format:** Supports PNG files only. If your image is in a different format,

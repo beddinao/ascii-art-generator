@@ -11,5 +11,5 @@ then
 	./a.out $1
 	rm a.out
 else
-	echo "file " $1 " does not exist"
+	echo "file" $1 "does not exist"
 fi

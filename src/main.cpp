@@ -3,11 +3,14 @@
 #include <fstream>
 using namespace std;
 
+#define	SHADOW_CHARS	"`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@"
+
 #ifndef	TERM_WIDTH
-# define	TERM_WIDTH	1600
+#define	TERM_WIDTH	1600
 #endif
+
 #ifndef	TERM_HEIGHT
-# define	TERM_HEIGHT	800
+#define	TERM_HEIGHT	800
 #endif
 
 void	decode(const char* filename, vector<unsigned char> &image, unsigned &width, unsigned &height) {
@@ -39,14 +42,12 @@ void	print_ansi(int R, int G, int B, bool front, char ch) {
 }
 
 void	put_pixel(int R, int G, int B) {
-	string	shadow_chars = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
-	//string	shadow_chars = ".,-~:;=!*#$@";
 	int	medium_color = (R + G + B) / 3,
 		shadow_index;
 
-	shadow_index = __calc_new_range(medium_color, 0, 255, 0, shadow_chars.size());
+	shadow_index = __calc_new_range(medium_color, 0, 255, 0, strlen(SHADOW_CHARS) + 1);
 	print_ansi(R - 40, G - 40, B - 40, false, ' ');
-	print_ansi(R, G, B, true, shadow_chars[shadow_index]);
+	print_ansi(R, G, B, true, SHADOW_CHARS[shadow_index]);
 }
 
 

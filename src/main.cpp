@@ -56,7 +56,7 @@ void	process(vector<unsigned char> &image, unsigned &width, unsigned &height) {
 		y_step = static_cast<int>(round(height / static_cast<float>(TERM_HEIGHT))),
 		index;
 
-	for (int y = 0;y / y_step < TERM_HEIGHT; y += y_step) {
+	for (int y = 0;y / y_step < TERM_HEIGHT && y < height; y += y_step) {
 		for (int x = 0; x / x_step < TERM_WIDTH && x < width ; x += x_step ) {
 			index = (y * width + x) * 4;
 			if (index < image.size() - 2)
@@ -65,19 +65,18 @@ void	process(vector<unsigned char> &image, unsigned &width, unsigned &height) {
 		cout << endl;
 	}
 
-	cout << "image.pixels: " << image.size() << "; image.width: " << width << "; image.height: " << height << ";"
+	cout << "image.pixels: " << image.size() / 4 << "; image.width: " << width << "; image.height: " << height << ";"
 		<< endl<< "terminal.width: " << TERM_WIDTH << "; terminal.height: " << TERM_HEIGHT << endl;
 }
 
 int	main(int c, char **v) {
 	if (c != 2) {
 		cout << "usage: ./convert [path to png file]" << endl;
-		exit(1);
+		return 1;
 	}
-	cout.flush();
 	vector<unsigned char> image;
 	unsigned width, height;
-
+	cout.flush();
 	decode(v[1], image, width, height);
 	process(image, width, height);
 }
